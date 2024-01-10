@@ -143,6 +143,38 @@ if (idFilm != null && nouveauTitre != null && !idFilm.trim().isEmpty() && !nouve
 
 <h2>Exercice 4 : La valeur maximum</h2>
 <p>Créer un formulaire pour saisir un nouveau film dans la base de données</p>
+<form method="post" action="#">
+    <label for="titre">Titre du film:</label>
+    <input type="text" id="titre" name="titre" required>
+    <label for="nouvelleAnneeFilm">Année:</label>
+    <input type="number" id="nouvelleAnneeFilm" name="nouvelleAnneeFilm" required>
+    <input type="submit" value="Ajouter un film">
+</form>
 
+<% 
+String titre = request.getParameter("titre");
+String nouvelleAnneeFilm = request.getParameter("nouvelleAnneeFilm");
+if (titre != null && nouvelleAnneeFilm != null && !titre.trim().isEmpty() && !nouvelleAnneeFilm.trim().isEmpty()) {
+    try {
+        String url = "jdbc:mariadb://localhost:3306/films";
+        String user = "mysql";
+        String password = "mysql";
+        Class.forName("org.mariadb.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(url, user, password);
+
+        String sql = "INSERT INTO Film (titre, année) VALUES (?, ?)";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, titre);
+        pstmt.setInt(2, Integer.parseInt(nouvelleAnneeFilm));
+        int affectedRows = pstmt.executeUpdate();
+
+        out.println(affectedRows + " film(s) ajouté(s).");
+        pstmt.close();
+        conn.close();
+    } catch (Exception e) {
+        out.println("Erreur: " + e.getMessage());
+    }
+}
+%>
 </body>
 </html>
