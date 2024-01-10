@@ -39,8 +39,58 @@ B = 20</br>
 C = 15</br>
 Oui C est compris entre A et B</p>
 
+<form action="#" method="post">
+      <p>
+        Saisir la valeur A :
+        <input type="text" id="inputValeurA" name="valeurA" />
+      </p>
+      <p>
+        Saisir la valeur B :
+        <input type="text" id="inputValeurB" name="valeurB" />
+      </p>
+      <p>
+        Saisir la valeur C :
+        <input type="text" id="inputValeurC" name="valeurC" />
+      </p>
+      <p><input type="submit" value="Afficher" /></p>
+    </form>
+
+    <%-- Récupération des valeurs --%> <% String valeurA =
+    request.getParameter("valeurA"); %> <% String valeurB =
+    request.getParameter("valeurB"); %> <% String valeurC =
+    request.getParameter("valeurC"); %> <%-- Vérification de la condition entre
+    les trois valeurs --%> <% if (valeurA != null && valeurB != null && valeurC
+    != null) { %> <%-- Conversion des valeurs en entiers pour la comparaison
+    --%> <% int intValeurA = Integer.parseInt(valeurA); %> <% int intValeurB =
+    Integer.parseInt(valeurB); %> <% int intValeurC = Integer.parseInt(valeurC);
+    %> <%-- Condition if pour vérifier si C est compris entre A et B --%> <% if
+    (intValeurC > intValeurA && intValeurC < intValeurB) { %>
+    <p>Oui, C est compris entre A et B.</p>
+    <% } else { %>
+    <p>Non, C n'est pas compris entre A et B.</p>
+    <% } %> <% } %>
+
+
+
 <h2>Exercice 2 : Pair ou Impair ?</h2>
 <p>Écrivez un programme pour vérifier si un nombre est pair ou impair en utilisant une structure if</p>
+ <!-- Exercice 2 Form -->
+    <form action="#" method="post">
+      <p>
+        Saisir un nombre : <input type="text" id="inputNombre" name="nombre" />
+      </p>
+      <p><input type="submit" value="Vérifier" /></p>
+    </form>
+
+    <%-- Récupération de la valeur du nombre --%> <% String nombreStr =
+    request.getParameter("nombre"); %> <%-- Vérification de la parité du nombre
+    --%> <% if (nombreStr != null) { %> <%-- Conversion de la valeur en entier
+    --%> <% int nombre = Integer.parseInt(nombreStr); %> <%-- Condition if pour
+    vérifier la parité --%> <% if (nombre % 2 == 0) { %>
+    <p>Le nombre est pair.</p>
+    <% } else { %>
+    <p>Le nombre est impair.</p>
+    <% } %>
 
 <% } %>
 <p><a href="index.html">Retour au sommaire</a></p>
