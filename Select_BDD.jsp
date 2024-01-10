@@ -107,6 +107,39 @@
 
 <h2>Exercice 3 : Modification du titre du film</h2>
 <p>Créer un fichier permettant de modifier le titre d'un film sur la base de son ID (ID choisi par l'utilisateur)</p>
+<form method="post" action="#">
+    <label for="idFilm">ID du film:</label>
+    <input type="text" id="idFilm" name="idFilm" required>
+    <label for="nouveauTitre">Nouveau titre:</label>
+    <input type="text" id="nouveauTitre" name="nouveauTitre" required>
+    <input type="submit" value="Modifier le titre">
+</form>
+
+<% 
+String idFilm = request.getParameter("idFilm");
+String nouveauTitre = request.getParameter("nouveauTitre");
+if (idFilm != null && nouveauTitre != null && !idFilm.trim().isEmpty() && !nouveauTitre.trim().isEmpty()) {
+    try {
+        String url = "jdbc:mariadb://localhost:3306/films";
+        String user = "mysql";
+        String password = "mysql";
+        Class.forName("org.mariadb.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(url, user, password);
+
+        String sql = "UPDATE Film SET titre = ? WHERE idFilm = ?";
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, nouveauTitre);
+        pstmt.setInt(2, Integer.parseInt(idFilm));
+        int affectedRows = pstmt.executeUpdate();
+
+        out.println(affectedRows + " ligne(s) mise(s) à jour.");
+        pstmt.close();
+        conn.close();
+    } catch (Exception e) {
+        out.println("Erreur: " + e.getMessage());
+    }
+}
+%>
 
 <h2>Exercice 4 : La valeur maximum</h2>
 <p>Créer un formulaire pour saisir un nouveau film dans la base de données</p>
