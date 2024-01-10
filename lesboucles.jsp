@@ -29,32 +29,84 @@
 <p>Ecrire le code afin de produire un carré d'étoile</p>
 <p>Exemple si l'utilisateur saisie le valeur 5</p>
 <p>*****</br>*****</br>*****</br>*****</br>*****</p>
+<p>
+<% for (int i = 1; i <= cpt; i++) { %>
+    <%= "*****" %><br/>
+<% } %>
+</p>
+
 
 <h2>Exercice 2 : Triangle rectangle gauche</h2>
 <p>Ecrire le code afin de produire un triangle rectangle aligné sur la gauche</p>
 <p>Exemple si l'utilisateur saisie le valeur 5</p>
 <p>*</br>**</br>***</br>****</br>*****</p>
+<p>
+<% for (int i = 1; i <= cpt; i++) { %>
+    <%= "*".repeat(i) %><br/>
+<% } %>
+</p>
 
 <h2>Exercice 3 : Triangle rectangle inversé</h2>
 <p>Ecrire le code afin de produire un triangle rectangle aligné sur la gauche</p>
 <p>Exemple si l'utilisateur saisie le valeur 5</p>
 <p>*****</br>****</br>***</br>**</br>*</p>
+<p>
+<% for (int i = cpt; i >= 1; i--) { %>
+    <%= "*".repeat(i) %><br/>
+<% } %>
+</p>
+
 
 <h2>Exercice 4 : Triangle rectangle 2</h2>
 <p>Ecrire le code afin de produire un triangle rectangle aligné sur la droite</p>
 <p>Exemple si l'utilisateur saisie le valeur 5</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;***</br>&nbsp;&nbsp;****</br>*****</p>
+<p>
+<% for (int i = 1; i <= cpt; i++) { %>
+    <%= "&nbsp;".repeat(cpt - i) + "*".repeat(i) %><br/>
+<% } %>
+</p>
 
 <h2>Exercice 5 : Triangle isocele</h2>
 <p>Ecrire le code afin de produire un triangle rectangle aligné sur la droite</p>
 <p>Exemple si l'utilisateur saisie le valeur 5</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;***</br>&nbsp;****</br>*****</p>
+<p>
+<% for (int i = 1; i <= cpt; i++) { %>
+    <%= "&nbsp;".repeat(cpt - i) + "*".repeat(i) %><br/>
+<% } %>
+</p>
+
+
 
 <h2>Exercice 6 : Le demi losange</h2>
 <p>Ecrire le code afin de produire un losange</p>
 <p>Exemple si l'utilisateur saisie le valeur 5</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;***</br>&nbsp;&nbsp;****</br>*****</p>
 <p>*****</br>&nbsp;&nbsp;****</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</p>
+<%
+for (int i = 1; i <= cpt; i++) {
+    for (int j = 1; j <= cpt - i; j++) {
+        out.print("&nbsp;&nbsp;");
+    }
+    for (int k = 1; k <= i; k++) {
+        out.print("*");
+    }
+    out.println("<br />");
+}
+
+for (int i = 2; i <= cpt; i++) {
+    for (int j = 1; j < i; j++) {
+        out.print("&nbsp;&nbsp;");
+    }
+    for (int k = i; k <= cpt; k++) {
+        out.print("*");
+    }
+    out.println("<br />");
+}
+%>
+
+
 
 <h2>Exercice 7 : La table de multiplication</h2>
 <p>Ecrire le code afin de créser une table de multiplication</p>
@@ -64,6 +116,14 @@
 <p>5 x 3 = 15</p>
 <p>5 x 4 = 20</p>
 <p>5 x 5 = 25</p>
+ <p> 
+<% 
+    for (int i = 1; i <= cpt; i++) { 
+        out.println("<p>" + cpt + " x " + i + " = " + (cpt * i) + "</p>");
+        if (i == cpt) break; 
+    } 
+    %>
+</p>
 
 <% } %>
 <p><a href="index.html">Retour au sommaire</a></p>
